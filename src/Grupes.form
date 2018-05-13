@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Grupes">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="569" height="469"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="64403" binding="tabbedPane1" default-binding="true">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="f9d0b" layout-manager="FormLayout">
+            <rowspec value="center:max(d;4px):noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:400px:noGrow"/>
+            <colspec value="fill:60px:noGrow"/>
+            <colspec value="left:4dlu:noGrow"/>
+            <colspec value="fill:max(d;4px):grow"/>
+            <colspec value="left:4dlu:noGrow"/>
+            <colspec value="fill:max(d;4px):grow"/>
+            <colspec value="left:4dlu:noGrow"/>
+            <colspec value="fill:d:noGrow"/>
+            <colspec value="left:4dlu:noGrow"/>
+            <colspec value="fill:m:noGrow"/>
+            <colspec value="left:4dlu:noGrow"/>
+            <colspec value="fill:m:noGrow"/>
+            <constraints>
+              <tabbedpane title="Grupės"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="a96cb" class="javax.swing.JComboBox" binding="combo_0_GrupesNr">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="80" height="30"/>
+                    <preferred-size width="80" height="30"/>
+                    <maximum-size width="80" height="30"/>
+                  </grid>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="1"/>
+                    <item value="2"/>
+                    <item value="3"/>
+                    <item value="4"/>
+                    <item value="5"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="7b6b7" class="javax.swing.JTextField" binding="text_0_GrupesNr">
+                <constraints>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="80" height="30"/>
+                    <preferred-size width="80" height="30"/>
+                    <maximum-size width="80" height="30"/>
+                  </grid>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="1"/>
+                </properties>
+              </component>
+              <component id="45fec" class="javax.swing.JButton" binding="button_0_PridetiNauja">
+                <constraints>
+                  <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="96" height="30"/>
+                  </grid>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Pridėti naują"/>
+                </properties>
+              </component>
+              <component id="66701" class="javax.swing.JButton" binding="button_0_Pervadinti">
+                <constraints>
+                  <grid row="0" column="8" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="63" height="30"/>
+                  </grid>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Pervadinti"/>
+                </properties>
+              </component>
+              <component id="ff048" class="javax.swing.JLabel" binding="label_0_Grupe">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="28" height="30"/>
+                  </grid>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Grupė"/>
+                </properties>
+              </component>
+              <component id="48064" class="javax.swing.JButton" binding="button_0_Istrinti">
+                <constraints>
+                  <grid row="0" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Ištrinti"/>
+                </properties>
+              </component>
+              <scrollpane id="89c1d">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="11" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="8e404" class="javax.swing.JTable" binding="table_0">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
+            </children>
+          </grid>
+          <grid id="dbfa3" layout-manager="FormLayout">
+            <rowspec value="center:d:noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:400px:noGrow"/>
+            <colspec value="fill:60px:noGrow"/>
+            <colspec value="left:4dlu:noGrow"/>
+            <colspec value="fill:d:grow"/>
+            <colspec value="left:4dlu:noGrow"/>
+            <colspec value="fill:60px:noGrow"/>
+            <colspec value="left:4dlu:noGrow"/>
+            <colspec value="fill:max(d;4px):grow"/>
+            <constraints>
+              <tabbedpane title="Lankomumo suvedimas"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="b628b" class="org.jdatepicker.JDatePicker" binding="date_1">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <showYearButtons value="true"/>
+                </properties>
+              </component>
+              <component id="becc6" class="javax.swing.JLabel" binding="label_1_Data">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="4"/>
+                  <text value="Data"/>
+                </properties>
+              </component>
+              <component id="a23ec" class="javax.swing.JLabel" binding="label_1_Grupe">
+                <constraints>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="4"/>
+                  <text value="Grupė"/>
+                </properties>
+              </component>
+              <component id="364fc" class="javax.swing.JComboBox" binding="combo_1_Grupe">
+                <constraints>
+                  <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="1"/>
+                  </model>
+                </properties>
+              </component>
+              <scrollpane id="d5ecc">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="7" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="80827" class="javax.swing.JTable" binding="table_1">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
+            </children>
+          </grid>
+          <grid id="39cc2" layout-manager="FormLayout">
+            <rowspec value="center:d:noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:max(d;4px):noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:365px:noGrow"/>
+            <colspec value="fill:60px:noGrow"/>
+            <colspec value="left:4dlu:noGrow"/>
+            <colspec value="fill:p:grow"/>
+            <colspec value="left:4dlu:noGrow"/>
+            <colspec value="fill:p:grow"/>
+            <colspec value="left:4dlu:noGrow"/>
+            <colspec value="fill:max(d;4px):noGrow"/>
+            <colspec value="fill:60px:noGrow"/>
+            <constraints>
+              <tabbedpane title="Lankomumo peržiūra"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="9781e" class="org.jdatepicker.JDatePicker" binding="date_2_Data">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <showYearButtons value="true"/>
+                </properties>
+              </component>
+              <component id="d12e0" class="javax.swing.JLabel" binding="label_2_Data">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="4"/>
+                  <text value="Data"/>
+                </properties>
+              </component>
+              <scrollpane id="a9bfa">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="8" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="48386" class="javax.swing.JTable" binding="table_2">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
+              <component id="61bed" class="org.jdatepicker.JDatePicker" binding="date_2_Iki">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="b583b" class="javax.swing.JCheckBox" binding="check_2_Iki">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="4"/>
+                  <text value="Iki"/>
+                </properties>
+              </component>
+              <component id="e340" class="javax.swing.JCheckBox" binding="check_2_VisosGr">
+                <constraints>
+                  <grid row="0" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Visos"/>
+                </properties>
+              </component>
+              <component id="ebe9d" class="javax.swing.JButton" binding="button_2_PDF">
+                <constraints>
+                  <grid row="2" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="PDF"/>
+                </properties>
+              </component>
+              <component id="c37a9" class="javax.swing.JLabel" binding="label_2_Grupe">
+                <constraints>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Grupė "/>
+                </properties>
+              </component>
+              <component id="20947" class="javax.swing.JComboBox" binding="combo_2_Grupe">
+                <constraints>
+                  <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="1.1"/>
+                  </model>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>
