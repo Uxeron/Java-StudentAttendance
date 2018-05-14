@@ -2,14 +2,16 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Grupes">
   <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="569" height="469"/>
+      <xy x="20" y="20" width="569" height="501"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
       <tabbedpane id="64403" binding="tabbedPane1" default-binding="true">
         <constraints border-constraint="Center"/>
-        <properties/>
+        <properties>
+          <enabled value="true"/>
+        </properties>
         <border type="none"/>
         <children>
           <grid id="f9d0b" layout-manager="FormLayout">
@@ -137,7 +139,9 @@
             <constraints>
               <tabbedpane title="Lankomumo suvedimas"/>
             </constraints>
-            <properties/>
+            <properties>
+              <enabled value="false"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="b628b" class="org.jdatepicker.JDatePicker" binding="date_1">
@@ -306,8 +310,38 @@
               </component>
             </children>
           </grid>
+          <grid id="b2101" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints>
+              <tabbedpane title="                                                                    "/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="9d16a" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints>
+              <tabbedpane title="_"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="26377" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints>
+              <tabbedpane title="X"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
         </children>
       </tabbedpane>
+      <component id="2bc93" class="javax.swing.JLabel" binding="StatusBar">
+        <constraints border-constraint="South"/>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
