@@ -343,13 +343,16 @@ public class UI extends UI_Listener {
 		} else if (buttonName == "Perkelti") {
 			if(table_0.getSelectedRow() != -1) {
 				if(database.getGroups().length > 1) {
-					if(comboBoxModel.getSelectedItem().toString() != comboBoxModel2.getSelectedItem().toString()) {
+					if(!comboBoxModel.getSelectedItem().toString().equals(comboBoxModel2.getSelectedItem().toString())) {
+						System.out.println(comboBoxModel.getSelectedItem().toString() + " " + comboBoxModel2.getSelectedItem().toString());
 						database.moveStudent(model.getValueAt(table_0.getSelectedRow(), table_0.getSelectedColumn()).toString(), comboBoxModel.getSelectedItem().toString(), comboBoxModel2.getSelectedItem().toString());
 						model.removeRow(table_0.getSelectedRow());
 					}
 				}
 			}
 		}
+
+		// todo: add statusBar output
 
 
 
@@ -362,9 +365,18 @@ public class UI extends UI_Listener {
 			}
 		}
 
-		updateTables();
+		//updateTables();
 	}
-	public void updateTables() {}
+	public void updateTables() {
+		// Clear table 0
+		for(; table_0_model.getRowCount() > 0;) {
+			table_0_model.removeRow(0);
+		}
+
+		for (String str: database.getStudentNames(comboBoxModel.getSelectedItem().toString())) {
+			table_0_model.addRow(new String[] {str});
+		}
+	}
 
 	// Functionality for close and minimize tabs
 	public void stateChanged(ChangeEvent e) {

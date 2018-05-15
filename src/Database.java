@@ -5,7 +5,7 @@ import java.util.Map;
 public class Database {
 	Map<String, Map<String, ArrayList<String> > > data;
 
-	public void Database() {
+	public Database() {
 		data = new HashMap<>();
 	}
 
