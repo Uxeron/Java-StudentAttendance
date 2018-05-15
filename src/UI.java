@@ -8,10 +8,11 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -53,10 +54,12 @@ public class UI extends UI_Listener {
 	private int prevTabIndex = 0;
 	private Database database;
 	private boolean tablePopulated = false;
+	DateTimeFormatter formatter;
 
 
 	public UI() {
 		database = new Database();
+		formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
 		initUI();
 	}
 
@@ -205,6 +208,7 @@ public class UI extends UI_Listener {
 
 		table_1_model.addColumn("Studentas");
 		table_1_model.addColumn("Dalyvavo");
+
 		table_1 = new JTable(table_1_model);
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_1.setDefaultEditor(Object.class, null);
@@ -216,8 +220,8 @@ public class UI extends UI_Listener {
 				int row = table.rowAtPoint(point);
 				if (table.getSelectedRow() != -1) {
 					ArrayList<String> arr = database.getStudents(comboBoxModel.getSelectedItem().toString()).get(table_1_model.getValueAt(table.getSelectedRow(), 0).toString());
-					boolean val = arr.contains(date_1.getFormattedTextField().getText());
-					database.markStudent(combo_1_Grupe.getSelectedItem().toString(), table_1_model.getValueAt(table.getSelectedRow(), 0).toString(), date_1.getFormattedTextField().getText(), !val);
+					boolean val = arr.contains(convertDate(date_1));
+					database.markStudent(combo_1_Grupe.getSelectedItem().toString(), table_1_model.getValueAt(table.getSelectedRow(), 0).toString(), convertDate(date_1), !val);
 					updateTables();
 				}
 			}
@@ -237,8 +241,18 @@ public class UI extends UI_Listener {
 		pane2.add(label_2_Data, cc.xy(1, 1));
 
 
-		table_2_model = new DefaultTableModel();
+		table_2_model=new DefaultTableModel() {
+			public Class<?> getColumnClass(int column) {
+				switch(column) {
+					case 0:  return String.class;
+					case 1:  return Boolean.class;
+					default: return Boolean.class;
+				}
+			}
+		};
+
 		table_2 = new JTable(table_2_model);
+		table_2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table_2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_2.setDefaultEditor(Object.class, null);
 		final JScrollPane scrollPane3 = new JScrollPane(table_2);
@@ -281,6 +295,8 @@ public class UI extends UI_Listener {
 		element.put("Iki", date_2_Iki);
 		element.put("Visos", combo_2_Grupe);
 		element.get(elementName).setEnabled(!element.get(elementName).isEnabled());
+
+		updateTables();
 	}
 
 	// Handle button pressed events
@@ -410,14 +426,83 @@ public class UI extends UI_Listener {
 			table_1_model.removeRow(0);
 		}
 
-		if(database.getGroups().length > 0) {
+		if(database.getGroups().length > 0 && convertDate(date_1).length() > 0) {
 			// Get student data
 			Map<String, ArrayList<String> > students = database.getStudents(comboBoxModel.getSelectedItem().toString());
 
 			// Populate table 1
 			for (String str : database.getStudentNames(comboBoxModel.getSelectedItem().toString())) {
-				table_1_model.addRow(new Object[]{str, students.get(str).contains(date_1.getFormattedTextField().getText())});
+				table_1_model.addRow(new Object[]{str, students.get(str).contains(convertDate(date_1))});
 			}
+			System.out.println(convertDate(date_1));
+		}
+
+		// Clear table 2
+		for(; table_2_model.getRowCount() > 0;) {
+			table_2_model.removeRow(0);
+		}
+
+		table_2_model.setColumnCount(0);
+
+		if(database.getGroups().length > 0 && convertDate(date_2_Data).length() > 0) {
+			String[] groups;
+			Map<String, ArrayList<String> > students;
+			if (check_2_VisosGr.isSelected())
+				groups = database.getGroups();
+			else
+				groups = new String[] {combo_2_Grupe.getSelectedItem().toString()};
+
+			table_2_model.addColumn("Studentai");
+
+			if (!check_2_Iki.isSelected()) {
+				LocalDate dateCurr = LocalDate.parse(date_2_Data.getFormattedTextField().getText(), formatter);
+				String[] parts = dateCurr.toString().split("-");
+				table_2_model.addColumn(parts[1] + "-" + parts[2]);
+				for (String group: groups) {
+					students = database.getStudents(group);
+					for (String student: students.keySet()) {
+						table_2_model.addRow(new Object[]{student, students.get(student).contains(convertDate(date_2_Data))});
+					}
+				}
+			} else if(convertDate(date_2_Iki).length() > 0){
+
+				LocalDate dateFrom = LocalDate.parse(date_2_Data.getFormattedTextField().getText(), formatter);
+				LocalDate dateTo = LocalDate.parse(date_2_Iki.getFormattedTextField().getText(), formatter);
+				LocalDate dateCurr = dateFrom;
+				while (dateCurr.isBefore(dateTo)) {
+					String[] parts = dateCurr.toString().split("-");
+					table_2_model.addColumn(parts[1] + "-" + parts[2]);
+					dateCurr = dateCurr.plusDays(1);
+				}
+
+				int counter;
+				for (String group: groups) {
+					students = database.getStudents(group);
+					for (String student: students.keySet()) {
+						table_2_model.addRow(new Object[]{student});
+						for (String date: students.get(student)) {
+							dateCurr = dateFrom;
+							counter = 0;
+							while (dateCurr.isBefore(dateTo)) {
+								counter ++;
+								table_2_model.setValueAt(students.get(student).contains(dateCurr.toString()),table_2_model.getRowCount()-1, counter);
+								dateCurr = dateCurr.plusDays(1);
+							}
+						}
+					}
+				}
+			}
+		}
+
+
+	}
+
+	private String convertDate(JDatePicker picker) {
+		if (picker.getFormattedTextField().getText().length() > 0) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
+			return LocalDate.parse(picker.getFormattedTextField().getText(), formatter).toString();
+		} else {
+			return "";
 		}
 	}
 
