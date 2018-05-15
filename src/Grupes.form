@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Grupes">
   <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="569" height="501"/>
+      <xy x="20" y="20" width="569" height="524"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -17,7 +17,23 @@
           <grid id="f9d0b" layout-manager="FormLayout">
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
-            <rowspec value="center:400px:noGrow"/>
+            <rowspec value="center:d:noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:16px:noGrow"/>
+            <rowspec value="center:max(d;4px):noGrow"/>
+            <rowspec value="center:max(d;4px):noGrow"/>
+            <rowspec value="center:34px:noGrow"/>
+            <rowspec value="center:max(d;4px):noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:max(d;4px):noGrow"/>
+            <rowspec value="center:max(d;4px):noGrow"/>
+            <rowspec value="top:5dlu:noGrow"/>
+            <rowspec value="center:max(d;4px):noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:max(d;4px):noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:200px:noGrow"/>
             <colspec value="fill:60px:noGrow"/>
             <colspec value="left:4dlu:noGrow"/>
             <colspec value="fill:max(d;4px):grow"/>
@@ -111,7 +127,7 @@
               </component>
               <scrollpane id="89c1d">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="11" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="0" row-span="17" col-span="7" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                   <forms defaultalign-horz="false" defaultalign-vert="false"/>
                 </constraints>
                 <properties/>
@@ -123,6 +139,59 @@
                   </component>
                 </children>
               </scrollpane>
+              <component id="8242" class="javax.swing.JButton" binding="button_0_pridėtiNaująButton">
+                <constraints>
+                  <grid row="14" column="8" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Pridėti naują"/>
+                </properties>
+              </component>
+              <component id="735be" class="javax.swing.JButton" binding="button_0_perkeltiButton">
+                <constraints>
+                  <grid row="9" column="8" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Perkelti"/>
+                </properties>
+              </component>
+              <component id="bbef1" class="javax.swing.JButton" binding="button_0_pašalintiButton">
+                <constraints>
+                  <grid row="8" column="8" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Pašalinti"/>
+                </properties>
+              </component>
+              <component id="9e5cb" class="javax.swing.JButton" binding="button_0_pakeistiVardąButton">
+                <constraints>
+                  <grid row="7" column="8" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Pakeisti vardą"/>
+                </properties>
+              </component>
+              <component id="9d9d1" class="javax.swing.JLabel" binding="label_0_studentas">
+                <constraints>
+                  <grid row="5" column="8" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <text value="Studentas:"/>
+                </properties>
+              </component>
+              <component id="3db28" class="javax.swing.JComboBox" binding="combo_gupePerkelti">
+                <constraints>
+                  <grid row="12" column="8" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties/>
+              </component>
             </children>
           </grid>
           <grid id="dbfa3" layout-manager="FormLayout">
