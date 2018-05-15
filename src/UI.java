@@ -8,6 +8,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,12 +56,11 @@ public class UI extends UI_Listener {
 
 
 	public UI() {
+		database = new Database();
 		initUI();
 	}
 
 	public void initUI() {
-		database = new Database();
-
 		// Set layout for main window
 		setLayout(new BorderLayout(0, 0));
 		CellConstraints cc = new CellConstraints();
@@ -168,9 +168,6 @@ public class UI extends UI_Listener {
 		// Student table
 		table_0_model = new DefaultTableModel();
 		table_0_model.addColumn("Studentas");
-		table_0_model.addRow(new String[] {"man"});
-		table_0_model.addRow(new String[] {"men"});
-		table_0_model.addRow(new String[] {"mon"});
 		table_0 = new JTable(table_0_model);
 		table_0.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_0.setDefaultEditor(Object.class, null);
@@ -196,10 +193,36 @@ public class UI extends UI_Listener {
 		pane1.add(combo_1_Grupe, cc.xy(7, 1));
 
 
-		table_1_model = new DefaultTableModel();
+		table_1_model=new DefaultTableModel() {
+			public Class<?> getColumnClass(int column) {
+				switch(column) {
+					case 0:  return String.class;
+					case 1:  return Boolean.class;
+					default: return String.class;
+				}
+			}
+		};
+
+		table_1_model.addColumn("Studentas");
+		table_1_model.addColumn("Dalyvavo");
 		table_1 = new JTable(table_1_model);
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_1.setDefaultEditor(Object.class, null);
+
+		table_1.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent mouseEvent) {
+				JTable table =(JTable) mouseEvent.getSource();
+				Point point = mouseEvent.getPoint();
+				int row = table.rowAtPoint(point);
+				if (table.getSelectedRow() != -1) {
+					ArrayList<String> arr = database.getStudents(comboBoxModel.getSelectedItem().toString()).get(table_1_model.getValueAt(table.getSelectedRow(), 0).toString());
+					boolean val = arr.contains(date_1.getFormattedTextField().getText());
+					database.markStudent(combo_1_Grupe.getSelectedItem().toString(), table_1_model.getValueAt(table.getSelectedRow(), 0).toString(), date_1.getFormattedTextField().getText(), !val);
+					updateTables();
+				}
+			}
+		});
+
 		final JScrollPane scrollPane2 = new JScrollPane(table_1);
 		pane1.add(scrollPane2, cc.xyw(1, 3, 7, CellConstraints.FILL, CellConstraints.FILL));
 
@@ -291,8 +314,8 @@ public class UI extends UI_Listener {
 			if (database.getGroups().length > 0) {
 				if (JOptionPane.showConfirmDialog(null, "Ar tikrai ištrinti grupę?", "Patvirtinimas", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 					database.removeGroup(comboBoxModel.getSelectedItem().toString());
-					comboBoxModel.removeElement(comboBoxModel.getSelectedItem());
 					comboBoxModel2.removeElement(comboBoxModel.getSelectedItem());
+					comboBoxModel.removeElement(comboBoxModel.getSelectedItem());
 					statusBar.setText("Grupė ištrinta");
 				}
 			} else {
@@ -365,16 +388,36 @@ public class UI extends UI_Listener {
 			}
 		}
 
-		//updateTables();
+		updateTables();
 	}
+
+	// Update all tables every time data changes
 	public void updateTables() {
 		// Clear table 0
 		for(; table_0_model.getRowCount() > 0;) {
 			table_0_model.removeRow(0);
 		}
 
-		for (String str: database.getStudentNames(comboBoxModel.getSelectedItem().toString())) {
-			table_0_model.addRow(new String[] {str});
+		// Populate table 0
+		if(database.getGroups().length > 0) {
+			for (String str : database.getStudentNames(comboBoxModel.getSelectedItem().toString())) {
+				table_0_model.addRow(new String[]{str});
+			}
+		}
+
+		// Clear table 1
+		for(; table_1_model.getRowCount() > 0;) {
+			table_1_model.removeRow(0);
+		}
+
+		if(database.getGroups().length > 0) {
+			// Get student data
+			Map<String, ArrayList<String> > students = database.getStudents(comboBoxModel.getSelectedItem().toString());
+
+			// Populate table 1
+			for (String str : database.getStudentNames(comboBoxModel.getSelectedItem().toString())) {
+				table_1_model.addRow(new Object[]{str, students.get(str).contains(date_1.getFormattedTextField().getText())});
+			}
 		}
 	}
 
